@@ -469,6 +469,119 @@ function showpath_w(elmnt) {
             }
         }
     }
+    else if (piece == "king") {
+        console.log("entered white king");
+        console.log(pos);
+        var a = pos.substring(0, 1); // eg. pos=a5,d7,etc
+        var b = pos.substring(1);
+        var b1 = 0;
+        var b2 = 0;
+        var b3 = 0;
+        var b4 = 0;
+        var p1 = String.fromCharCode(a.charCodeAt() + 1) + String.fromCharCode(b.charCodeAt() + 1);
+        var p2 = String.fromCharCode(a.charCodeAt() + 1) + String.fromCharCode(b.charCodeAt() - 1);
+        var p3 = String.fromCharCode(a.charCodeAt() - 1) + String.fromCharCode(b.charCodeAt() + 1);
+        var p4 = String.fromCharCode(a.charCodeAt() - 1) + String.fromCharCode(b.charCodeAt() - 1);
+        if (cells.includes(p1))
+            var e1 = document.querySelector("img." + p1);
+        if (cells.includes(p2))
+            var e2 = document.querySelector("img." + p2);
+        if (cells.includes(p3))
+            var e3 = document.querySelector("img." + p3);
+        if (cells.includes(p4))
+            var e4 = document.querySelector("img." + p4);
+
+        if (e1 == null && b1 == 0)
+            paths.push(p1);
+        else if (e1 != null && e1.classList[0] == "w")
+            b1 = 1;
+        else if (e1 != null && e1.classList[0] == "b" && b1 == 0) {
+            b1 = 1;
+            paths.push(p1);
+        }
+
+        if (e2 == null && b2 == 0)
+            paths.push(p2);
+        else if (e2 != null && e2.classList[0] == "w")
+            b2 = 1;
+        else if (e2 != null && e2.classList[0] == "b" && b2 == 0) {
+            b2 = 1;
+            paths.push(p2);
+        }
+
+        if (e3 == null && b3 == 0)
+            paths.push(p3);
+        else if (e3 != null && e3.classList[0] == "w")
+            b3 = 1;
+        else if (e3 != null && e3.classList[0] == "b" && b3 == 0) {
+            b3 = 1;
+            paths.push(p3);
+        }
+
+        if (e4 == null && b4 == 0)
+            paths.push(p4);
+        else if (e4 != null && e4.classList[0] == "w")
+            b4 = 1;
+        else if (e4 != null && e4.classList[0] == "b" && b4 == 0) {
+            b4 = 1;
+            paths.push(p4);
+        }
+        var a = pos.substring(0, 1); // eg. pos=a5,d7,etc
+        var b = pos.substring(1);
+        var b1 = 0;
+        var b2 = 0;
+        var b3 = 0;
+        var b4 = 0;
+        var p1 = String.fromCharCode(a.charCodeAt() - 1) + b;
+        var p2 = String.fromCharCode(a.charCodeAt() + 1) + b;
+        var p3 = a + String.fromCharCode(b.charCodeAt() + 1);
+        var p4 = a + String.fromCharCode(b.charCodeAt() - 1);
+        if (cells.includes(p1))
+            var e1 = document.querySelector("img." + p1);
+        if (cells.includes(p2))
+            var e2 = document.querySelector("img." + p2);
+        if (cells.includes(p3))
+            var e3 = document.querySelector("img." + p3);
+        if (cells.includes(p4))
+            var e4 = document.querySelector("img." + p4);
+
+        if (e1 == null && b1 == 0)
+            paths.push(p1);
+        else if (e1 != null && e1.classList[0] == "w")
+            b1 = 1;
+        else if (e1 != null && e1.classList[0] == "b" && b1 == 0) {
+            b1 = 1;
+            paths.push(p1);
+        }
+
+        if (e2 == null && b2 == 0)
+            paths.push(p2);
+        else if (e2 != null && e2.classList[0] == "w")
+            b2 = 1;
+        else if (e2 != null && e2.classList[0] == "b" && b2 == 0) {
+            b2 = 1;
+            paths.push(p2);
+        }
+
+        if (e3 == null && b3 == 0)
+            paths.push(p3);
+        else if (e3 != null && e3.classList[0] == "w")
+            b3 = 1;
+        else if (e3 != null && e3.classList[0] == "b" && b3 == 0) {
+            b3 = 1;
+            paths.push(p3);
+        }
+
+        if (e4 == null && b4 == 0)
+            paths.push(p4);
+        else if (e4 != null && e4.classList[0] == "w")
+            b4 = 1;
+        else if (e4 != null && e4.classList[0] == "b" && b4 == 0) {
+            b4 = 1;
+            paths.push(p4);
+        }
+        console.log(paths);
+    }
     return paths;
 
 }
@@ -822,7 +935,7 @@ function showpath_b(elmnt) {
         }
         //console.log(paths);
     }
-    if (piece == "king") {
+    else if (piece == "king") {
         console.log("entered black king");
         console.log(pos);
         var a = pos.substring(0, 1); // eg. pos=a5,d7,etc
