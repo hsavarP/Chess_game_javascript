@@ -5,6 +5,8 @@
     margin:50px auto;
     margin-bottom: 20px;
     margin-top: 20px;
+    position: relative;
+    top:0px;
 }
 .row
 {
@@ -48,9 +50,25 @@ div img
     margin: 0px auto;
     border-radius: 5px;
     overflow: scroll;
+    position: relative;
+    top:0px;
 }
 #history p
 {
     margin-top: 5px;
     margin-bottom: 5px;
+}
+.inst
+{
+    text-decoration: none;
+    border: 1px solid black;
+    border-radius: 3px;
+    background-color: #7f4782;
+    color:aqua;
+    font-family: sans-serif;
+    width:200px;
+    height:30px;
+    line-height: 30px;
+    margin: 10px auto; 
+    
 }

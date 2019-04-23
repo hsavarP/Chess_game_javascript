@@ -1,0 +1,66 @@
+<html>
+    <head>
+        <title>Chess | Instructions</title>
+        <style>
+            .body
+            {
+               background-color: green;
+            }
+            .top
+            {
+                width: 50%;
+                margin: 10px auto;
+                height: 50px;
+                border: 1px solid black;
+                border-radius: 5px;
+                text-align: center;
+                line-height: 50px;
+                font-size:50px;
+                font-family:sans-serif;
+                background: #ff4057;
+            }
+            p
+            {
+               
+                font-family: cursive;
+                padding-left: 250px;
+                color:ffd98e;
+            }
+            a
+            {
+                text-decoration: none;
+                border: 1px solid black;
+                display: block;
+                width:15%;
+                border-radius: 4px;
+                margin: 20px auto;
+                text-align: center;
+                background: #ff4057;
+                color: #000;
+                font-size: 30px;
+                font-family: monospace;
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+        </style>
+    </head>
+    <body id="bd">
+        <div class="top"> Instruction</div>
+        <div class="content">
+            <p>1. The moves of a piece are done in a pair.</p>
+            <p>Eg. if u want to move a white pawn from B2 to C2, then click on cell B2 first and the click on C2</p>
+            <p>2. Important in case u click on wrong cell , suppose C3, then u need to click on B2 and then C2</p>
+            <p><em>Valid</em> : click in order -> B2 -> C2 </p>
+            <p><em>Invalid</em> : click in order -> B2 -> C3 -> C2 </p>
+            <p><em>Valid</em> : click in order -> B2 -> C3 -> B2 -> C2 </p>
+            <p>3. Castling has not been implemented yet.(Will be updated soon)</p>
+            <p>4. Checkmate condition has not been implemented yet.</p>
+            <p>5. The game finishes as soon as a king DIES !!!</p>
+        </div>
+        <a href="index.html">Back to game</a>
+        <script>
+            document.getElementById("bd").style.backgroundColor="#240041";
+
+        </script>
+    </body>
+</html>

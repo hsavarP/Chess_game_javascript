@@ -1,3 +1,4 @@
+document.querySelector(".inst").innerHTML="White' s Turn";
 var moves = 0;
 var prev = null;
 var ar = [];
@@ -88,9 +89,15 @@ window.onclick = function (e) {
     console.log(record);*/
     if (trace[0].includes(record[record.length - 1])) {
         if(moves%2==0 && states[0].classList[0]=="w")
+        {
             moves=move(states, record,moves);
+            document.querySelector(".inst").innerHTML="Black' s Turn";
+        }
         else if(moves%2!=0 && states[0].classList[0]=="b")
-             moves=move(states, record,moves);
+        {
+            moves=move(states, record,moves);
+            document.querySelector(".inst").innerHTML="White' s Turn";
+        }
 
     }
     //console.log(trace[0]);
