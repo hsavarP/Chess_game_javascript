@@ -92,6 +92,7 @@ window.onclick = function (e) {
     var cow = check_on_white();
     if (cob || cow) 
     {
+        //alert("Check");
         
         var dum_s0=states[0],dum_s1=states[1];
         if (trace != null && trace[0]!=null && trace[0].includes(record[record.length - 1])) 
@@ -106,17 +107,17 @@ window.onclick = function (e) {
                 if(check_on_white())
                     {
                         
-                        if(dum[0].substring(dum[0].length-4)=="html")
+                        if(dum[0].substring(dum[0].length-4)!=".svg")
                             states[0].src="";
                         else
                             states[0].src=dum[0];
                         states[0].className=dum[2];
-                        if(dum[1].substring(dum[1].length-4)=="html")
+                        if(dum[1].substring(dum[1].length-4)!=".svg")
                             states[1].src="";
                         else
-                            states[1]=dum[1];
+                            states[1].src=dum[1];
                         states[1].className=dum[3];
-                        moves--;
+                        moves--;   
                     }
                 else
                 document.querySelector(".inst").innerHTML = "Black' s Turn";
@@ -132,15 +133,15 @@ window.onclick = function (e) {
                         
                         //console.log(dum_s0);
                        
-                        if(dum[0].substring(dum[0].length-4)=="html")
+                        if(dum[0].substring(dum[0].length-4)!=".svg")
                             states[0].src="";
                         else
                             states[0].src=dum[0];
                         states[0].className=dum[2];
-                        if(dum[1].substring(dum[1].length-4)=="html")
+                        if(dum[1].substring(dum[1].length-4)!=".svg")
                             states[1].src="";
                         else
-                            states[1]=dum[1];
+                            states[1].src=dum[1];
                         states[1].className=dum[3];
                         moves--;
                     }
@@ -159,15 +160,15 @@ window.onclick = function (e) {
             if(check_on_white())
                     {
                         
-                        if(dum[0].substring(dum[0].length-4)=="html")
+                        if(dum[0].substring(dum[0].length-3)!="svg")
                             states[0].src="";
                         else
                             states[0].src=dum[0];
                         states[0].className=dum[2];
-                        if(dum[1].substring(dum[1].length-4)=="html")
+                        if(dum[1].substring(dum[1].length-3)!="svg")
                             states[1].src="";
                         else
-                            states[1]=dum[1];
+                            states[1].src=dum[1];
                         states[1].className=dum[3];
                         moves--;
                     }
@@ -182,15 +183,15 @@ window.onclick = function (e) {
                         
                         //console.log(dum_s0);
                        
-                        if(dum[0].substring(dum[0].length-4)=="html")
+                        if(dum[0].substring(dum[0].length-3)!="svg")
                             states[0].src="";
                         else
                             states[0].src=dum[0];
                         states[0].className=dum[2];
-                        if(dum[1].substring(dum[1].length-4)=="html")
+                        if(dum[1].substring(dum[1].length-3)!="svg")
                             states[1].src="";
                         else
-                            states[1]=dum[1];
+                            states[1].src=dum[1];
                         states[1].className=dum[3];
                         moves--;
                     }
@@ -298,7 +299,13 @@ function move(states, record, moves) {
     var textnode = document.createTextNode(mv); // Create a text node
     node.appendChild(textnode); // Append the text to <li>
     document.getElementById("history").appendChild(node);
-
+    
+    console.log("states");
+    console.log(states[0]);
+    console.log(states[1]);
+    console.log("dummy");
+    console.log(sender[0]);
+    console.log(sender[1]);
     
     return sender;
 }
