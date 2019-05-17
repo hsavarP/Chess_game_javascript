@@ -1,4 +1,4 @@
-document.querySelector(".inst").innerHTML="White' s Turn";
+document.querySelector(".inst").innerHTML = "White' s Turn";
 var moves = 0;
 var prev = null;
 var ar = [];
@@ -52,19 +52,19 @@ window.onclick = function (e) {
     //console.log("end");
 
     var elmnt = (e.srcElement.className).split(" ");
-    console.log("element");
-    //console.log(elmnt);
+    /*console.log("element");
+    console.log(elmnt);*/
 
     if (white_pieces.includes(elmnt[elmnt.length - 2])) {
         paths = showpath_w(elmnt);
-        console.log(e.srcElement);
+        //console.log(e.srcElement);
         states.push(e.srcElement);
         if (states.length > 2)
             states.shift();
 
     } else if (black_pieces.includes(elmnt[elmnt.length - 2])) {
         paths = showpath_b(elmnt);
-        console.log(e.srcElement);
+        //console.log(e.srcElement);
         states.push(e.srcElement);
         if (states.length > 2)
             states.shift();
@@ -86,29 +86,183 @@ window.onclick = function (e) {
     console.log("states");
     console.log(states);
     console.log("record");
-    console.log(record);*/
-    if (trace[0].includes(record[record.length - 1])) {
-        if(moves%2==0 && states[0].classList[0]=="w")
+    console.log(record);
+    var chk=check_on_black();*/
+    var cob = check_on_black();
+    var cow = check_on_white();
+    if (cob || cow) 
+    {
+        
+        var dum_s0=states[0],dum_s1=states[1];
+        if (trace != null && trace[0]!=null && trace[0].includes(record[record.length - 1])) 
         {
-            moves=move(states, record,moves);
-            document.querySelector(".inst").innerHTML="Black' s Turn";
+            if (moves % 2 == 0 && states[0].classList[0] == "w") 
+            {
+                
+                
+                var dum = move(states, record, moves);moves++;
+                
+                
+                if(check_on_white())
+                    {
+                        
+                        if(dum[0].substring(dum[0].length-4)=="html")
+                            states[0].src="";
+                        else
+                            states[0].src=dum[0];
+                        states[0].className=dum[2];
+                        if(dum[1].substring(dum[1].length-4)=="html")
+                            states[1].src="";
+                        else
+                            states[1]=dum[1];
+                        states[1].className=dum[3];
+                        moves--;
+                    }
+                else
+                document.querySelector(".inst").innerHTML = "Black' s Turn";
+            } 
+            else if (moves % 2 != 0 && states[0].classList[0] == "b") 
+            {
+                
+                
+                var dum = move(states, record, moves);moves++;
+               
+                if(check_on_black())
+                    {
+                        
+                        //console.log(dum_s0);
+                       
+                        if(dum[0].substring(dum[0].length-4)=="html")
+                            states[0].src="";
+                        else
+                            states[0].src=dum[0];
+                        states[0].className=dum[2];
+                        if(dum[1].substring(dum[1].length-4)=="html")
+                            states[1].src="";
+                        else
+                            states[1]=dum[1];
+                        states[1].className=dum[3];
+                        moves--;
+                    }
+                else
+                document.querySelector(".inst").innerHTML = "White' s Turn";
+            }
+
         }
-        else if(moves%2!=0 && states[0].classList[0]=="b")
+        
+    } 
+    else if (trace != null && trace[0]!=null && trace[0].includes(record[record.length - 1])) 
+    {
+        if (moves % 2 == 0 && states[0].classList[0] == "w") 
         {
-            moves=move(states, record,moves);
-            document.querySelector(".inst").innerHTML="White' s Turn";
+            var dum = move(states, record, moves);moves++;
+            if(check_on_white())
+                    {
+                        
+                        if(dum[0].substring(dum[0].length-4)=="html")
+                            states[0].src="";
+                        else
+                            states[0].src=dum[0];
+                        states[0].className=dum[2];
+                        if(dum[1].substring(dum[1].length-4)=="html")
+                            states[1].src="";
+                        else
+                            states[1]=dum[1];
+                        states[1].className=dum[3];
+                        moves--;
+                    }
+            else
+                document.querySelector(".inst").innerHTML = "Black' s Turn";
+        } 
+        else if (moves % 2 != 0 && states[0].classList[0] == "b") 
+        {
+            var dum = move(states, record, moves);moves++;
+            if(check_on_black())
+                    {
+                        
+                        //console.log(dum_s0);
+                       
+                        if(dum[0].substring(dum[0].length-4)=="html")
+                            states[0].src="";
+                        else
+                            states[0].src=dum[0];
+                        states[0].className=dum[2];
+                        if(dum[1].substring(dum[1].length-4)=="html")
+                            states[1].src="";
+                        else
+                            states[1]=dum[1];
+                        states[1].className=dum[3];
+                        moves--;
+                    }
+            else
+                document.querySelector(".inst").innerHTML = "White' s Turn";
         }
 
     }
+    
     //console.log(trace[0]);
     //console.log(record[record.length-1]);
 
 
 }
 
-function move(states, record,moves) {
-    console.log("states");
-    console.log(states);
+function check_on_black() {
+    //console.log("entered check on black");
+    for (var i = 0; i < white_pieces.length; i++) {
+        var elmnt = document.querySelector("." + white_pieces[i]);
+        if (elmnt != null)
+            var lst = elmnt.className.split(" ");
+        else
+            var lst = null;
+        //var pc=white_pieces[i].substring(1,white_pieces[i].length-1);
+        if (lst != null)
+            var next_moves = showpath_w(lst);
+        else
+            var next_moves = [];
+
+        var b_king_pos = document.querySelector(".bking1").className.split(" ")[2];
+        if (lst != null && next_moves.includes(b_king_pos)) {
+            //alert("Check");
+            return true;
+        }
+    }
+    return false;
+}
+
+function check_on_white() {
+    //console.log("entered check on black");
+    for (var i = 0; i < black_pieces.length; i++) {
+        var elmnt = document.querySelector("." + black_pieces[i]);
+        if (elmnt != null)
+            var lst = elmnt.className.split(" ");
+        else
+            var lst = null;
+        //var pc=white_pieces[i].substring(1,white_pieces[i].length-1);
+        if (lst != null)
+            var next_moves = showpath_b(lst);
+        else
+            var next_moves = [];
+
+        var w_king_pos = document.querySelector(".wking1").className.split(" ")[2];
+        if (lst != null && next_moves.includes(w_king_pos)) {
+            //alert("Check");
+            return true;
+        }
+    }
+    return false;
+}
+
+function move(states, record, moves) {
+    
+    var dum_ar=[];
+    dum_ar.push(states[0]);
+    dum_ar.push(states[1]);
+    var src1=states[0].src;
+    var src2=states[1].src;
+    var c1=states[0].className;
+    var c2=states[1].className
+    
+
     states[1].src = states[0].src;
     states[0].src = "";
     cnames = states[0].className.split(" ");
@@ -123,15 +277,30 @@ function move(states, record,moves) {
     }
     states[1].className = names;
     states[0].className = "";
+    
 
+    /*console.log("states");
+    console.log(states[1].className.split(" "));*/
+    /*var dummy=states[1].className.split(" ");
+    if(dummy[0]=="w")
+    {
+        console.log("next Moves");
+        console.log(showpath_w(dummy));
+    }
+    else if(dummy[0]=="b")
+    {
+        console.log("next Moves");
+        console.log(showpath_b(dummy));
+    }*/
+    var sender=[];sender.push(src1);sender.push(src2);sender.push(c1);sender.push(c2);
     var mv = record[0] + "-" + record[1];
     var node = document.createElement("p"); // Create a <li> node
     var textnode = document.createTextNode(mv); // Create a text node
     node.appendChild(textnode); // Append the text to <li>
     document.getElementById("history").appendChild(node);
+
     
-    moves++;
-    return moves;
+    return sender;
 }
 
 function showpath_w(elmnt) {
@@ -475,10 +644,9 @@ function showpath_w(elmnt) {
                 paths.push(p4);
             }
         }
-    }
-    else if (piece == "king") {
-        console.log("entered white king");
-        console.log(pos);
+    } else if (piece == "king") {
+        //console.log("entered white king");
+        //console.log(pos);
         var a = pos.substring(0, 1); // eg. pos=a5,d7,etc
         var b = pos.substring(1);
         var b1 = 0;
@@ -587,7 +755,7 @@ function showpath_w(elmnt) {
             b4 = 1;
             paths.push(p4);
         }
-        console.log(paths);
+        //console.log(paths);
     }
     return paths;
 
@@ -637,7 +805,7 @@ function showpath_b(elmnt) {
         p1 = String.fromCharCode(a.charCodeAt() - 1) + String.fromCharCode(b.charCodeAt() + 1);
         check_cell = "img" + "." + p1;
         dummy = document.querySelector(check_cell);
-        console.log(dummy);
+        //console.log(dummy);
         if (dummy != null) {
 
             if (dummy.classList != null) {
@@ -941,10 +1109,9 @@ function showpath_b(elmnt) {
             }
         }
         //console.log(paths);
-    }
-    else if (piece == "king") {
-        console.log("entered black king");
-        console.log(pos);
+    } else if (piece == "king") {
+        //console.log("entered black king");
+        //console.log(pos);
         var a = pos.substring(0, 1); // eg. pos=a5,d7,etc
         var b = pos.substring(1);
         var b1 = 0;
@@ -1053,10 +1220,10 @@ function showpath_b(elmnt) {
             b4 = 1;
             paths.push(p4);
         }
-        console.log(paths);
+        //console.log(paths);
     }
-    console.log("paths");
-    console.log(paths);
+    //console.log("paths");
+    //console.log(paths);
     return paths;
 
 }
